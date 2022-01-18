@@ -21,14 +21,17 @@ public class MainController {
         pilot.setName("Valenok");
         pilot.setMain(true);
         pilotsRepo.save(pilot);
+
         Pilot pilot1 = new Pilot();
         pilot1.setName("Pelmen");
         pilot1.setMain(true);
         pilotsRepo.save(pilot1);
+
         Pilot pilot2 = new Pilot();
         pilot2.setName("Kirpich");
         pilot2.setMain(true);
         pilotsRepo.save(pilot2);
+
         Pilot pilot3 = new Pilot();
         pilot3.setName("PelmenTabyret");
         pilot3.setMain(true);
@@ -38,12 +41,12 @@ public class MainController {
     }
 
     @GetMapping("/pilots")
-    public String pilots() {
-
+    public String pilots(Map<String, Object> model) {
 
         List<Pilot> pilots = pilotsRepo.findAll();
-
-
-        return "Find "+pilots.size()+"pilots";
+        String str = "Find "+pilots.size()+" pilots";
+        model.put("some", str);
+        return "pilots";
     }
 }
+
